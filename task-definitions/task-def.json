@@ -1,0 +1,109 @@
+[
+    {
+      "volumesFrom": [],
+      "memory": 1024,
+      "extraHosts": null,
+      "dnsServers": null,
+      "disableNetworking": null,
+      "dnsSearchDomains": null,
+      "portMappings": [
+        {
+          "hostPort": 8070,
+          "containerPort": 8070,
+          "protocol": "tcp"
+        },
+        {
+          "hostPort": 8071,
+          "containerPort": 8071,
+          "protocol": "tcp"
+        }
+      ],
+      "hostname": null,
+      "essential": true,
+      "entryPoint": null,
+      "mountPoints": [],
+      "name": "iq-server",
+      "ulimits": null,
+      "dockerSecurityOptions": null,
+      "environment": [],
+      "links": null,
+      "workingDirectory": null,
+      "readonlyRootFilesystem": null,
+      "image": "010904452381.dkr.ecr.us-west-2.amazonaws.com/sonatype-se:iq-server",
+      "command": null,
+      "user": null,
+      "dockerLabels": null,
+      "logConfiguration": null,
+      "cpu": 512,
+      "privileged": null,
+      "memoryReservation": null
+    },
+    {
+      "volumesFrom": [],
+      "memory": 1024,
+      "extraHosts": null,
+      "dnsServers": null,
+      "disableNetworking": null,
+      "dnsSearchDomains": null,
+      "portMappings": [
+        {
+          "hostPort": 8080,
+          "containerPort": 8080,
+          "protocol": "tcp"
+        }
+      ],
+      "hostname": null,
+      "essential": true,
+      "entryPoint": null,
+      "mountPoints": [],
+      "name": "jenkins",
+      "ulimits": null,
+      "dockerSecurityOptions": null,
+      "environment": [],
+      "links": null,
+      "workingDirectory": null,
+      "readonlyRootFilesystem": null,
+      "image": "010904452381.dkr.ecr.us-west-2.amazonaws.com/sonatype-se:jenkins",
+      "command": null,
+      "user": null,
+      "dockerLabels": null,
+      "logConfiguration": null,
+      "cpu": 512,
+      "privileged": null,
+      "memoryReservation": null
+    },
+    {
+      "volumesFrom": [],
+      "memory": 1024,
+      "extraHosts": null,
+      "dnsServers": null,
+      "disableNetworking": null,
+      "dnsSearchDomains": null,
+      "portMappings": [
+        {
+          "hostPort": 8081,
+          "containerPort": 8081,
+          "protocol": "tcp"
+        }
+      ],
+      "hostname": null,
+      "essential": true,
+      "entryPoint": null,
+      "mountPoints": [],
+      "name": "nexus3",
+      "ulimits": null,
+      "dockerSecurityOptions": null,
+      "environment": [],
+      "links": null,
+      "workingDirectory": null,
+      "readonlyRootFilesystem": null,
+      "image": "010904452381.dkr.ecr.us-west-2.amazonaws.com/sonatype-se:nexus3",
+      "command": null,
+      "user": null,
+      "dockerLabels": null,
+      "logConfiguration": null,
+      "cpu": 512,
+      "privileged": null,
+      "memoryReservation": null
+    }
+  ]
