@@ -1,4 +1,4 @@
-# Configure the AWS Provider
+#  Configure the AWS Provider
 provider "aws" {
   #access_key = "xxxxxxxx" #Obtained from ~/.aws/credentials
   #secret_key = "xxxxxxxx" #Obtained from ~/.aws/credentials
