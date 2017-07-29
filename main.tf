@@ -17,12 +17,29 @@ resource "aws_vpc" "poc-vpc" {
   }
 }
 
+resource "aws_route_table" "external" {
+  vpc_id = "${aws_vpc.poc-vpc.id}"
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = "${aws_internet_gateway.poc-internet-gateway.id}"
+  }
+}
+
+resource "aws_route_table_association" "external-main" {
+  subnet_id = "${aws_subnet.poc-subnet.id}"
+  route_table_id = "${aws_route_table.external.id}"
+}
+
+resource "aws_internet_gateway" "poc-internet-gateway" {
+  vpc_id = "${aws_vpc.poc-vpc.id}"
+}
+
 resource "aws_subnet" "poc-subnet" {
   vpc_id     = "${aws_vpc.poc-vpc.id}"
   cidr_block = "10.0.1.0/24"
   map_public_ip_on_launch = "true"
   availability_zone = "${var.availability_zone}"
-
+  depends_on = ["aws_vpc.poc-vpc"]
   tags {
     Name = "POC-subnet"
   }
@@ -37,7 +54,7 @@ resource "aws_instance" "POC-Instance" {
   key_name = "Pipeline-POC-Key-Pair"
   vpc_security_group_ids = ["${aws_security_group.poc-sec-group.id}"]
   subnet_id = "${aws_subnet.poc-subnet.id}"
-
+  depends_on = ["aws_security_group.poc-sec-group", "aws_subnet.poc-subnet"]
   tags {
     Name = "POC Instance"
   }
@@ -73,6 +90,14 @@ resource "aws_security_group" "poc-sec-group" {
     cidr_blocks = [
       "0.0.0.0/0"]
   }
+  ingress {
+    from_port = 22
+    to_port = 22
+    protocol = "tcp"
+    cidr_blocks = [
+      "0.0.0.0/0"]
+  }
+
 }
 
 
