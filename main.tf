@@ -13,7 +13,8 @@ resource "aws_vpc" "poc-vpc" {
   enable_dns_hostnames = "true"
 
   tags {
-    Name = "POC-VPC"
+    Name = "POC-VPC ${var.prospect_name} ${var.se_name}"
+    SE-Name = "${var.se_name}"
   }
 }
 
@@ -41,7 +42,8 @@ resource "aws_subnet" "poc-subnet" {
   availability_zone = "${var.availability_zone}"
   depends_on = ["aws_vpc.poc-vpc"]
   tags {
-    Name = "POC-subnet"
+    Name = "Terraform-subnet ${var.prospect_name} ${var.se_name}"
+    SE-Name = "${var.se_name}"
   }
 }
 
@@ -56,7 +58,8 @@ resource "aws_instance" "POC-Instance" {
   subnet_id = "${aws_subnet.poc-subnet.id}"
   depends_on = ["aws_security_group.poc-sec-group", "aws_subnet.poc-subnet"]
   tags {
-    Name = "POC Instance"
+    Name = "Terrafrom Instance ${var.prospect_name} ${var.se_name}"
+    SE-Name = "${var.se_name}"
   }
 }
 

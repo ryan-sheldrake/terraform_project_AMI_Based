@@ -1,3 +1,10 @@
+variable "prospect_name" {
+  description = "Please enter the name of the prospect"
+}
+
+variable "se_name" {
+  description = "Please enter your name as the accountable C/SE"
+}
 
 variable "region" {
   description = "The AWS region to create resources in."
