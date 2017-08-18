@@ -2,18 +2,19 @@
 provider "aws" {
   #access_key = "xxxxxxxx" #Obtained from ~/.aws/credentials
   #secret_key = "xxxxxxxx" #Obtained from ~/.aws/credentials
-  region     = "us-west-2"
+  region     = "${var.region}"
   profile = "ryan.sheldrake" #This is only required if you have more than one profile in ~/.aws/credentials
 }
 
 
+//testing
 resource "aws_vpc" "poc-vpc" {
   cidr_block       = "10.0.0.0/16"
   #instance_tenancy = "dedicated"
   enable_dns_hostnames = "true"
 
   tags {
-    Name = "POC-VPC ${var.prospect_name} ${var.se_name}"
+    Name = "Terrform-VPC ${var.prospect_name} ${var.se_name}"
     SE-Name = "${var.se_name}"
   }
 }
@@ -42,7 +43,7 @@ resource "aws_subnet" "poc-subnet" {
   availability_zone = "${var.availability_zone}"
   depends_on = ["aws_vpc.poc-vpc"]
   tags {
-    Name = "Terraform-subnet ${var.prospect_name} ${var.se_name}"
+    Name = "Terraform-Subnet ${var.prospect_name} ${var.se_name}"
     SE-Name = "${var.se_name}"
   }
 }
@@ -58,7 +59,7 @@ resource "aws_instance" "POC-Instance" {
   subnet_id = "${aws_subnet.poc-subnet.id}"
   depends_on = ["aws_security_group.poc-sec-group", "aws_subnet.poc-subnet"]
   tags {
-    Name = "Terrafrom Instance ${var.prospect_name} ${var.se_name}"
+    Name = "Terraform-Instance ${var.prospect_name} ${var.se_name}"
     SE-Name = "${var.se_name}"
   }
 }
